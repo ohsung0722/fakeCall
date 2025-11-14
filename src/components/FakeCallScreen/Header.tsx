@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, FONT, SPACING } from "../../constants/theme";
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     fontSize: FONT.xl,
     fontWeight: "700",
     color: COLORS.white,
+    marginBottom: SPACING.sm,
   },
   subtitle: {
     fontSize: FONT.sm,

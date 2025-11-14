@@ -1,3 +1,4 @@
+import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { COLORS, FONT, SPACING } from "../../constants/theme";
