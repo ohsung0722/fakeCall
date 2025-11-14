@@ -10,22 +10,14 @@ export function useContacts() {
   const loadContacts = useCallback(async () => {
     setState("loading");
 
-    const { status } = await Contacts.requestPermissionsAsync();
-    if (status !== "granted") {
+    const granted = await requestContactPermission();
+    if (!granted) {
       setState("denied");
       return;
     }
 
-    const { data } = await Contacts.getContactsAsync({
-      fields: [Contacts.Fields.PhoneNumbers],
-    });
-
-    setContacts(
-      data
-        .filter((contact) => contact.phoneNumbers?.length)
-        .sort((a, b) => a.name.localeCompare(b.name))
-    );
-
+    const result = await fetchContacts();
+    setContacts(result);
     setState("ready");
   }, []);
 
@@ -34,4 +26,19 @@ export function useContacts() {
   }, [loadContacts]);
 
   return { contacts, state, reload: loadContacts };
+}
+
+async function requestContactPermission() {
+  const { status } = await Contacts.requestPermissionsAsync();
+  return status === "granted";
+}
+
+async function fetchContacts() {
+  const { data } = await Contacts.getContactsAsync({
+    fields: [Contacts.Fields.PhoneNumbers],
+  });
+
+  return data
+    .filter((contact) => contact.phoneNumbers?.length)
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
