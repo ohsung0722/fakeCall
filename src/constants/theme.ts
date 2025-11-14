@@ -1,5 +1,6 @@
 export const COLORS = {
   white: "#fff",
+  whiteSub: "#E8ECF5",
   red: "#c84c3e",
   gray: {
     light: "#C5CBD8",
