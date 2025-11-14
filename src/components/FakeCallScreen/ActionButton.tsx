@@ -33,9 +33,14 @@ function ActionButton({
       style={({ pressed }) => [basicStyle, pressStateStyle(pressed)]}
       onPress={onPress}
     >
-      <Ionicons name={icon} size={26} color={COLORS.white} />
-      <Text>{title}</Text>
-      <Text>{subtitle}</Text>
+      <Ionicons
+        name={icon}
+        size={26}
+        color={COLORS.white}
+        style={styles.icon}
+      />
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>{subtitle}</Text>
     </Pressable>
   );
 }

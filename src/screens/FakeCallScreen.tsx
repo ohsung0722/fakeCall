@@ -9,6 +9,7 @@ function FakeCallScreen() {
   return (
     <View style={styles.container}>
       <Header />
+
       <View style={styles.actions}>
         <ActionButton
           icon="alert-circle-outline"
