@@ -4,8 +4,14 @@ import Header from "../components/FakeCallScreen/Header";
 import ActionButton from "../components/FakeCallScreen/ActionButton";
 import { COLORS, SPACING } from "../constants/theme";
 import Footer from "../components/FakeCallScreen/Footer";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList, "Home">;
 
 function FakeCallScreen() {
+  const navigation = useNavigation<NavigationProps>();
   return (
     <View style={styles.container}>
       <Header />
@@ -23,7 +29,7 @@ function FakeCallScreen() {
           title="전화번호부"
           subtitle="내 연락처로 전화받기"
           color={COLORS.blue}
-          onPress={() => console.log("전화번호부")}
+          onPress={() => navigation.navigate("Contacts")}
         />
       </View>
 

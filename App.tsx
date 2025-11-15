@@ -5,8 +5,9 @@ import FakeCallScreen from "./src/screens/FakeCallScreen";
 import ContactListScreen from "./src/screens/ContactListScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { RootStackParamList } from "./src/navigation/types";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
