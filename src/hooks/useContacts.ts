@@ -4,7 +4,7 @@ import * as Contacts from "expo-contacts";
 type ContactState = "loading" | "ready" | "denied";
 
 export function useContacts() {
-  const [contacts, setContacts] = useState<Contacts.Contact[]>([]);
+  const [contacts, setContacts] = useState<Contacts.ExistingContact[]>([]);
   const [state, setState] = useState<ContactState>("loading");
 
   const loadContacts = useCallback(async () => {
@@ -40,5 +40,5 @@ async function fetchContacts() {
 
   return data
     .filter((contact) => contact.phoneNumbers?.length)
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
 }
