@@ -1,5 +1,8 @@
 export const COLORS = {
   mainBackground: "#101B33",
+  listBackgroundStart: "#1C2432",
+  listBackgroundEnd: "#0F1623",
+  listBorder: "#2D3550",
   white: "#fff",
   whiteSub: "#E8ECF5",
   red: "#c84c3e",
