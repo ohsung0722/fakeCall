@@ -11,22 +11,27 @@ interface ContactButtonProps {
 }
 
 function ContactButton({ name, phone, onCall }: ContactButtonProps) {
-  return (
-    <LinearGradient
-      colors={[COLORS.listBackgroundStart, COLORS.listBackgroundEnd]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.container}
-    >
-      <View>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.phone}>{phone}</Text>
-      </View>
+  const pressStyle = (pressed: boolean) => ({
+    opacity: pressed ? 0.6 : 1,
+    transform: [{ scale: pressed ? 0.97 : 1 }],
+  });
 
-      <Pressable onPress={onCall}>
+  return (
+    <Pressable onPress={onCall} style={({ pressed }) => [pressStyle(pressed)]}>
+      <LinearGradient
+        colors={[COLORS.listBackgroundStart, COLORS.listBackgroundEnd]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.container}
+      >
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.phone}>{phone}</Text>
+        </View>
+
         <Ionicons name="call-outline" size={26} color={COLORS.blue} />
-      </Pressable>
-    </LinearGradient>
+      </LinearGradient>
+    </Pressable>
   );
 }
 

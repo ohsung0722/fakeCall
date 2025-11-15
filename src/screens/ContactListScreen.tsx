@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   permissionTitle: {
     fontSize: 20,
-    color: "#fff",
+    color: COLORS.white,
     fontWeight: "700",
     marginBottom: 10,
   },
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   buttonText: {
-    color: "#fff",
+    color: COLORS.white,
     fontWeight: "600",
   },
   secondaryButton: {
