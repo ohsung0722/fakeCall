@@ -12,7 +12,13 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          animation: "slide_from_right",
+          animationTypeForReplace: "push",
+        }}
+      >
         <Stack.Screen name="Home" component={FakeCallScreen} />
         <Stack.Screen name="Contacts" component={ContactListScreen} />
       </Stack.Navigator>

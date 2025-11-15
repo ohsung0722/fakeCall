@@ -16,10 +16,11 @@ function ContactButton({ name, phone, onCall }: ContactButtonProps) {
       colors={[COLORS.listBackgroundStart, COLORS.listBackgroundEnd]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
+      style={styles.container}
     >
       <View>
-        <Text>{name}</Text>
-        <Text>{phone}</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.phone}>{phone}</Text>
       </View>
 
       <Pressable onPress={onCall}>

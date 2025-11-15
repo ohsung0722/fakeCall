@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { COLORS, FONT, SPACING } from "../../constants/theme";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface HeaderBarProps {
   title: string;
@@ -12,7 +13,7 @@ function HeaderBar({ title }: HeaderBarProps) {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Pressable onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color={COLORS.white} />
       </Pressable>
@@ -20,7 +21,7 @@ function HeaderBar({ title }: HeaderBarProps) {
       <Text style={styles.title}>{title}</Text>
 
       <View style={styles.blank} />
-    </View>
+    </SafeAreaView>
   );
 }
 
