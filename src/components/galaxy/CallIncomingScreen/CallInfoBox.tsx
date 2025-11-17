@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../constants/theme";
 
-export default function CallInfoBox() {
+function CallInfoBox() {
   return (
     <View style={styles.container}>
       <View style={styles.lastCallContainer}>
@@ -33,3 +33,5 @@ const styles = StyleSheet.create({
   },
   assistText: { color: COLORS.white, fontSize: 15 },
 });
+
+export default CallInfoBox;
