@@ -1,5 +1,10 @@
 export const COLORS = {
   mainBackground: "#101B33",
+  galaxy: {
+    background: {
+      start: "#0e0d18",
+    },
+  },
   listBackgroundStart: "#1C2432",
   listBackgroundEnd: "#0F1623",
   listBorder: "#2D3550",
