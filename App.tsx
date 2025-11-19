@@ -6,6 +6,7 @@ import ContactListScreen from "./src/screens/ContactListScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { RootStackParamList } from "./src/navigation/types";
+import CallIncomingScreen from "./src/screens/galaxy/CallIncomingScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,6 +22,7 @@ export default function App() {
       >
         <Stack.Screen name="Home" component={FakeCallScreen} />
         <Stack.Screen name="Contacts" component={ContactListScreen} />
+        <Stack.Screen name="Incoming" component={CallIncomingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

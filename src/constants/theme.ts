@@ -3,6 +3,7 @@ export const COLORS = {
   galaxy: {
     background: {
       start: "#0e0d18",
+      end: "#2b2438",
     },
   },
   listBackgroundStart: "#1C2432",
@@ -11,6 +12,7 @@ export const COLORS = {
   white: "#fff",
   whiteSub: "#E8ECF5",
   red: "#c84c3e",
+  green: "#4ea56b",
   orange: "#F28C13",
   blue: "#3478F6",
   gray: {
@@ -18,6 +20,7 @@ export const COLORS = {
     dark: "#2E3545",
     text: "#CCCCCC",
   },
+  black: "#000",
 };
 
 export const SPACING = {
