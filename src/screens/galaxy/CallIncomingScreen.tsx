@@ -11,11 +11,13 @@ import CallInfoBox from "../../components/galaxy/CallIncomingScreen/CallInfoBox"
 import CallButton from "../../components/galaxy/CallIncomingScreen/CallButton";
 import MessageButton from "../../components/galaxy/CallIncomingScreen/MessageButton";
 import { RootStackParamList } from "../../navigation/types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type IncomingRoute = RouteProp<RootStackParamList, "Incoming">;
+type Nav = NativeStackNavigationProp<RootStackParamList, "Incoming">;
 
 function CallIncomingScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<Nav>();
   const route = useRoute<IncomingRoute>();
   const { from } = route.params;
 
@@ -38,7 +40,7 @@ function CallIncomingScreen() {
     ringtone.stop();
     vibration.stop();
 
-    //navigation.navigate("OngoingCall", { scenario, from });
+    navigation.navigate("Ongoing", route.params);
   };
 
   const handleDecline = () => {
@@ -76,7 +78,6 @@ function CallIncomingScreen() {
 
   return (
     <View style={styles.container}>
-      {/* 🔥 Background */}
       <Animated.View
         style={[StyleSheet.absoluteFill, { backgroundColor: bgInterpolation }]}
         pointerEvents="none"
