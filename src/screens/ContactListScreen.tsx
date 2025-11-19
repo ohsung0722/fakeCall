@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useContacts } from "../hooks/useContacts";
 import * as Linking from "expo-linking";
 import {
@@ -13,9 +13,46 @@ import {
 import HeaderBar from "../components/common/HeaderBar";
 import { COLORS, SPACING } from "../constants/theme";
 import ContactButton from "../components/ContactListScreen/ContactButton";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
+
+type Nav = NativeStackNavigationProp<RootStackParamList, "Contacts">;
+
+interface ContactItem {
+  id: string;
+  name: string;
+  phoneNumbers?: { number?: string }[];
+}
 
 function ContactListScreen() {
   const { contacts, state, reload } = useContacts();
+
+  const navigation = useNavigation<Nav>();
+
+  const handleCallPress = useCallback(
+    (item: ContactItem) => {
+      navigation.navigate("Incoming", {
+        caller: {
+          name: item.name,
+          phoneNumber: item.phoneNumbers?.[0]?.number ?? "",
+          from: "Contacts",
+        },
+      });
+    },
+    [navigation]
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: ContactItem }) => (
+      <ContactButton
+        name={item.name}
+        phone={item.phoneNumbers?.[0]?.number ?? ""}
+        onCall={() => handleCallPress(item)}
+      />
+    ),
+    [handleCallPress]
+  );
 
   const openSettings = () => {
     Linking.openSettings();
@@ -63,13 +100,7 @@ function ContactListScreen() {
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ paddingBottom: 40 }}
-          renderItem={({ item }) => (
-            <ContactButton
-              name={item.name}
-              phone={item.phoneNumbers?.[0]?.number ?? ""}
-              onCall={() => console.log(item.phoneNumbers?.[0]?.number)}
-            />
-          )}
+          renderItem={renderItem}
         />
       )}
 
