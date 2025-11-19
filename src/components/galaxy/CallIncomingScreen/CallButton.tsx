@@ -1,5 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
-import React, { Ref, useEffect, useImperativeHandle, useRef } from "react";
+import React, {
+  forwardRef,
+  Ref,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import {
   Animated,
   Pressable,
@@ -134,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CallButton;
+export default forwardRef(CallButton);
