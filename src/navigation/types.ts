@@ -1,16 +1,23 @@
 export type RootStackParamList = {
   Home: undefined;
   Contacts: undefined;
-  Incoming: {
-    caller: {
-      name: string;
-      phoneNumber: string;
-      from: "Contacts" | "Scenario";
-    };
-    scenario?: {
-      name: string;
-      phoneNumber: string;
-      from: "Scenario";
-    };
-  };
+  Incoming: IncomingParams;
+  Ongoing: IncomingParams;
 };
+
+export type IncomingParams =
+  | {
+      from: "Contacts";
+      caller: {
+        name: string;
+        phoneNumber: string;
+      };
+    }
+  | {
+      from: "Scenario";
+      scenario: {
+        name: string;
+        phoneNumber: string;
+        ringtone?: any;
+      };
+    };

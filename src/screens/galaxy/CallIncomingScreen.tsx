@@ -17,10 +17,10 @@ type IncomingRoute = RouteProp<RootStackParamList, "Incoming">;
 function CallIncomingScreen() {
   const navigation = useNavigation();
   const route = useRoute<IncomingRoute>();
-  const params = route.params ?? {};
+  const { from } = route.params;
 
-  const caller = params.caller ??
-    params.scenario ?? { name: "???", phoneNumber: "010-0000-0000" };
+  const callerInfo =
+    from === "Contacts" ? route.params.caller : route.params.scenario;
 
   const bgAnimation = useRef(new Animated.Value(0)).current;
 
@@ -37,6 +37,7 @@ function CallIncomingScreen() {
   const handleAccept = () => {
     ringtone.stop();
     vibration.stop();
+
     //navigation.navigate("OngoingCall", { scenario, from });
   };
 
@@ -88,7 +89,10 @@ function CallIncomingScreen() {
         pointerEvents="none"
       />
 
-      <IncomingHeader name={caller.name} phoneNumber={caller.phoneNumber} />
+      <IncomingHeader
+        name={callerInfo.name}
+        phoneNumber={callerInfo.phoneNumber}
+      />
 
       <View style={styles.callInfoSection} pointerEvents="none">
         <CallInfoBox />

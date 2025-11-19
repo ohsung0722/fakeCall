@@ -33,10 +33,10 @@ function ContactListScreen() {
   const handleCallPress = useCallback(
     (item: ContactItem) => {
       navigation.navigate("Incoming", {
+        from: "Contacts",
         caller: {
           name: item.name,
           phoneNumber: item.phoneNumbers?.[0]?.number ?? "",
-          from: "Contacts",
         },
       });
     },
