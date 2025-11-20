@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import AssistButton from "../../components/galaxy/CallOngoingScreen/AssistButton";
 import ControlsGroup from "../../components/galaxy/CallOngoingScreen/ControlsGroup";
 import OngoingHeader from "../../components/galaxy/CallOngoingScreen/OngoingHeader";
+import useAudioPlayback from "../../hooks/useAudioPlayback";
 
 type CallOngoingRoute = RouteProp<RootStackParamList, "Ongoing">;
 
@@ -24,12 +25,20 @@ function CallOngoingScreen() {
   const caller =
     from === "Contacts" ? route.params.caller : route.params.scenario;
 
+  const ringtoneFile =
+    from === "Scenario" && route.params.scenario?.ringtone
+      ? route.params.scenario.ringtone
+      : null;
+
+  const ringtone = useAudioPlayback(ringtoneFile ?? null);
+
   const bgInterpolation = bgAnimation.interpolate({
     inputRange: [0, 1],
     outputRange: [COLORS.galaxy.background.start, COLORS.galaxy.background.end],
   });
 
   const handleEndCallButton = () => {
+    ringtone?.stop();
     const targetRoute = from === "Contacts" ? "Contacts" : "Scenario";
 
     navigation.dispatch(
@@ -39,6 +48,16 @@ function CallOngoingScreen() {
       })
     );
   };
+
+  useEffect(() => {
+    if (!ringtone) return;
+
+    ringtone.start();
+
+    return () => {
+      ringtone?.stop();
+    };
+  }, [ringtoneFile]);
 
   useEffect(() => {
     const loop = Animated.loop(

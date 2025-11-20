@@ -22,7 +22,7 @@ function FakeCallScreen() {
           title="상황별 전화"
           subtitle="탈출하고 싶은 상황 선택"
           color={COLORS.orange}
-          onPress={() => console.log("상황별 전화 클릭")}
+          onPress={() => navigation.navigate("Scenario")}
         />
         <ActionButton
           icon="person-outline"

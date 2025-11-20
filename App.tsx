@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { RootStackParamList } from "./src/navigation/types";
 import CallIncomingScreen from "./src/screens/galaxy/CallIncomingScreen";
 import CallOngoingScreen from "./src/screens/galaxy/CallOngoingScreen";
+import ScenarioScreen from "./src/screens/ScenarioScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="Contacts" component={ContactListScreen} />
         <Stack.Screen name="Incoming" component={CallIncomingScreen} />
         <Stack.Screen name="Ongoing" component={CallOngoingScreen} />
+        <Stack.Screen name="Scenario" component={ScenarioScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
