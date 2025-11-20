@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Home: undefined;
   Contacts: undefined;
+  Scenario: undefined;
   Incoming: IncomingParams;
   Ongoing: IncomingParams;
 };
