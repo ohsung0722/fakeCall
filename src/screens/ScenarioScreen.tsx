@@ -15,6 +15,7 @@ import HeaderBar from "../components/common/HeaderBar";
 import ScenarioButton from "../components/ScenarioScreen/ScenarioButton";
 import { COLORS, FONT, SPACING } from "../constants/theme";
 import { getUserScenarios } from "../storage/scenarioStorage";
+import CreateScenarioModal from "../components/ScenarioScreen/CreateScenarioModal";
 
 type Nav = NativeStackNavigationProp<RootStackParamList, "Scenario">;
 
@@ -71,20 +72,11 @@ function ScenarioScreen() {
         )}
       />
 
-      <Modal visible={modalVisible} transparent animationType="fade">
-        <View style={styles.modalBackground}>
-          <View style={styles.modalBox}>
-            <Text style={styles.modalTitle}>커스텀 상황 만들기</Text>
-
-            <Pressable
-              style={styles.closeBtn}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={{ color: "#fff" }}>닫기</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      <CreateScenarioModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSaved={(updated) => setCustomScenarios(updated)}
+      />
     </View>
   );
 }
