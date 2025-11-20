@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RootStackParamList } from "../navigation/types";
 import { Scenario, SCENARIOS } from "../constants/scenario";
 import {
@@ -14,12 +14,21 @@ import {
 import HeaderBar from "../components/common/HeaderBar";
 import ScenarioButton from "../components/ScenarioScreen/ScenarioButton";
 import { COLORS, FONT, SPACING } from "../constants/theme";
+import { getUserScenarios } from "../storage/scenarioStorage";
 
 type Nav = NativeStackNavigationProp<RootStackParamList, "Scenario">;
 
 function ScenarioScreen() {
   const navigation = useNavigation<Nav>();
   const [modalVisible, setModalVisible] = useState(false);
+  const [customScenarios, setCustomScenarios] = useState<Scenario[]>([]);
+
+  async function loadStoredScenarios() {
+    const stored = await getUserScenarios();
+    setCustomScenarios(stored);
+  }
+
+  const allScenarios = [...customScenarios, ...SCENARIOS];
 
   const handlePressScenario = (item: Scenario) => {
     navigation.navigate("Incoming", {
@@ -32,11 +41,14 @@ function ScenarioScreen() {
     });
   };
 
+  useEffect(() => {
+    loadStoredScenarios();
+  }, []);
+
   return (
     <View style={styles.container}>
       <HeaderBar title="상황 선택" />
 
-      {/* Custom Button */}
       <Pressable
         style={({ pressed }) => [
           styles.customButton,
@@ -47,9 +59,8 @@ function ScenarioScreen() {
         <Text style={styles.customText}>+ 커스텀 상황 만들기</Text>
       </Pressable>
 
-      {/* 리스트 */}
       <FlatList
-        data={SCENARIOS}
+        data={allScenarios}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <ScenarioButton
@@ -60,7 +71,6 @@ function ScenarioScreen() {
         )}
       />
 
-      {/* Modal */}
       <Modal visible={modalVisible} transparent animationType="fade">
         <View style={styles.modalBackground}>
           <View style={styles.modalBox}>
