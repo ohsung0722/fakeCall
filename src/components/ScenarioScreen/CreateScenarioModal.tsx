@@ -10,7 +10,6 @@ import {
   View,
 } from "react-native";
 import { COLORS, FONT } from "../../constants/theme";
-import useRecorder from "../../hooks/useRecorder";
 import AudioRecorderUploader from "./AudioRecorderUploader";
 
 interface CreateScenarioModalProps {
@@ -182,6 +181,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 20,
   },
   cancelBtn: {
     padding: 12,
