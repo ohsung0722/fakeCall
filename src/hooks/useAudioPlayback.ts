@@ -16,9 +16,12 @@ function useAudioPlayback(
   file: AudioSource,
   options: AudioPlaybackOptions = {}
 ): AudioPlaybackController {
+  const normalizedSource: AudioSource =
+    typeof file === "string" ? { uri: file } : file;
+
   const { loop = true } = options;
 
-  const player = useAudioPlayer(file, { downloadFirst: true });
+  const player = useAudioPlayer(normalizedSource, { downloadFirst: true });
   const status = useAudioPlayerStatus(player);
   const isStopped = useRef(false);
 
