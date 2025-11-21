@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Scenario } from "../../constants/scenario";
 import { saveScenario } from "../../storage/scenarioStorage";
 import {
+  Alert,
   Modal,
   Pressable,
   StyleSheet,
@@ -28,24 +29,36 @@ function CreateScenarioModal({
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [audioUri, setAudioUri] = useState<string | null>(null);
+  const [showErrors, setShowErrors] = useState(false);
 
   const handleSave = async () => {
-    if (!description || !name || !phoneNumber) {
+    if (!title || !description || !name || !phoneNumber) {
+      setShowErrors(true); // 에러 표시 트리거
       return;
     }
 
-    const newScenario: Scenario = {
-      id: Date.now().toString(),
-      title,
-      description,
-      name,
-      phoneNumber,
-      ringtone: audioUri ?? null,
-    };
+    // 저장 전에 확인 팝업
+    Alert.alert("저장하시겠습니까?", "입력한 내용으로 새 상황을 추가합니다.", [
+      { text: "취소", style: "cancel" },
+      {
+        text: "확인",
+        style: "destructive",
+        onPress: async () => {
+          const newScenario: Scenario = {
+            id: Date.now().toString(),
+            title,
+            description,
+            name,
+            phoneNumber,
+            ringtone: audioUri ?? null,
+          };
 
-    const updated = await saveScenario(newScenario);
-    onSaved(updated);
-    onClose();
+          const updated = await saveScenario(newScenario);
+          onSaved(updated);
+          onClose();
+        },
+      },
+    ]);
   };
 
   return (
@@ -57,7 +70,10 @@ function CreateScenarioModal({
           <View style={styles.inputSection}>
             <Text style={styles.label}>상황 제목</Text>
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                showErrors && !title ? styles.inputError : null,
+              ]}
               placeholder="예: 늦은 밤 골목길"
               placeholderTextColor="#818181"
               value={title}
@@ -69,7 +85,10 @@ function CreateScenarioModal({
             <Text style={styles.label}>상황 설명</Text>
             <TextInput
               placeholder="예: 뒤 따라오는 사람이 있을 때"
-              style={styles.input}
+              style={[
+                styles.input,
+                showErrors && !title ? styles.inputError : null,
+              ]}
               placeholderTextColor="#888"
               value={description}
               onChangeText={setDescription}
@@ -80,7 +99,10 @@ function CreateScenarioModal({
             <Text style={styles.label}>표시될 이름</Text>
             <TextInput
               placeholder="예: 엄마 / 팀장 / 이성친구"
-              style={styles.input}
+              style={[
+                styles.input,
+                showErrors && !title ? styles.inputError : null,
+              ]}
               placeholderTextColor="#888"
               value={name}
               onChangeText={setName}
@@ -90,7 +112,10 @@ function CreateScenarioModal({
             <Text style={styles.label}>전화번호</Text>
             <TextInput
               placeholder="전화번호"
-              style={styles.input}
+              style={[
+                styles.input,
+                showErrors && !title ? styles.inputError : null,
+              ]}
               placeholderTextColor="#888"
               keyboardType="phone-pad"
               value={phoneNumber}
@@ -99,10 +124,14 @@ function CreateScenarioModal({
           </View>
 
           <View style={{ marginTop: 10 }}>
-            <Text style={styles.label}>음성 선택 (선택사항)</Text>
+            <Text style={styles.label}>음성 기입</Text>
 
             <AudioRecorderUploader onChange={(uri) => setAudioUri(uri)} />
           </View>
+
+          {showErrors && !title && (
+            <Text style={styles.errorText}>필수 입력 항목입니다.</Text>
+          )}
 
           <View style={styles.row}>
             <Pressable style={styles.cancelBtn} onPress={onClose}>
@@ -155,6 +184,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 12,
   },
+  inputError: {
+    borderWidth: 1.4,
+    borderColor: "#ff5252",
+  },
 
   recordBtn: {
     backgroundColor: "#3757ff40",
@@ -201,6 +234,12 @@ const styles = StyleSheet.create({
   },
   cancelText: { color: "#aaa" },
   saveText: { color: COLORS.white, fontWeight: "700" },
+  errorText: {
+    color: "#ff6b6b",
+    fontSize: 12,
+    marginTop: 8,
+    marginBottom: 10,
+  },
 });
 
 export default CreateScenarioModal;
