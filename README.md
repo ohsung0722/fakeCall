@@ -23,7 +23,7 @@ Fake Call은 React Native 기반 가짜 전화 어플입니다. </br>
 
 |메인 화면|
 |:---:|
-|<img width="648" height="1404" alt="image" src="https://github.com/user-attachments/assets/ab4fd2c4-926d-4e5e-80d7-0eac16e96272" />|
+|<img width="369" height="800" alt="image" src="https://github.com/user-attachments/assets/ab4fd2c4-926d-4e5e-80d7-0eac16e96272" />|
 |FakeCall 메인 화면으로 상황별 전화 or 전화번호부 연동한 가짜 전화 선택 가능|
 
 - FakeCall의 메인 화면 UI 입니다.
@@ -33,8 +33,8 @@ Fake Call은 React Native 기반 가짜 전화 어플입니다. </br>
 
 |상황별 화면|
 |:---:|
-|<img width="1080" height="1273" alt="image" src="https://github.com/user-attachments/assets/fe8a70ac-a744-4538-8f1e-fc7c764fb177" />|
-|<img width="648" height="1404" alt="image" src="https://github.com/user-attachments/assets/c99980b8-7995-4c19-898c-de365627c3af" />|
+|<img width="369" height="435" alt="image" src="https://github.com/user-attachments/assets/fe8a70ac-a744-4538-8f1e-fc7c764fb177" />|
+|<img width="369" height="800" alt="image" src="https://github.com/user-attachments/assets/c99980b8-7995-4c19-898c-de365627c3af" />|
 |기본으로 주어지는 상황 + 커스텀 상황 추가 가능|
 
 - 상황별 전화를 선택했을 때 보여지는 화면입니다.
@@ -45,8 +45,8 @@ Fake Call은 React Native 기반 가짜 전화 어플입니다. </br>
 
 |전화 수신 화면|
 |:---:|
-|<img width="648" height="1404" alt="image" src="https://github.com/user-attachments/assets/a37cef17-7b1a-4e9e-a212-d40b1e752d9d" />|
-|<img width="648" height="1404" alt="image" src="https://github.com/user-attachments/assets/1bf98cdc-336f-410d-8899-72cc10077bb5" />|
+|<img width="369" height="800" alt="image" src="https://github.com/user-attachments/assets/a37cef17-7b1a-4e9e-a212-d40b1e752d9d" />|
+|<img width="369" height="800" alt="image" src="https://github.com/user-attachments/assets/1bf98cdc-336f-410d-8899-72cc10077bb5" />|
 |가짜 전화 수신 화면 UI|
 
 - 상황 혹은 연락처를 선택했을 때 보여지는 화면입니다.
@@ -74,6 +74,6 @@ apk 파일 링크: https://expo.dev/artifacts/eas/frMaeaE12KmRE7ggJ1V25M.apk
 ## Author
 |권오성|
 |:---:|
-|<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/5f92d4e3-cf07-4391-a97f-b655a2d94f82" />|
+|<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/5f92d4e3-cf07-4391-a97f-b655a2d94f82" />|
 |React 기반 FE 개발자|
 
